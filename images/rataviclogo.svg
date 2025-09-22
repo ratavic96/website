@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 300">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#linear-gradient-2);
+        stroke-linecap: round;
+        stroke-width: 10px;
+      }
+
+      .cls-4 {
+        opacity: .07;
+      }
+
+      .cls-4, .cls-5 {
+        isolation: isolate;
+      }
+
+      .cls-5 {
+        font-family: Arial-BoldMT, Arial;
+        font-size: 140px;
+        font-weight: 700;
+      }
+
+      .cls-5, .cls-6 {
+        fill: #0f172a;
+      }
+
+      .cls-7 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-8 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-9 {
+        letter-spacing: .04em;
+      }
+
+      .cls-3 {
+        stroke: #0f172a;
+        stroke-width: 6px;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="96.36" y1="645.79" x2="97.36" y2="644.79" gradientTransform="translate(-2634 44023) scale(28 -68)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="99.8" y1="612.32" x2="100.8" y2="611.32" gradientTransform="translate(-32722 5718) scale(332 -9)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect class="cls-1" width="1200" height="300"/>
+  <g>
+    <circle class="cls-3" cx="80" cy="150" r="54"/>
+    <circle class="cls-6" cx="80" cy="150" r="6"/>
+    <polygon class="cls-7" points="80 104 94 158 80 172 66 158 80 104"/>
+    <ellipse class="cls-4" cx="80" cy="208" rx="34" ry="6"/>
+  </g>
+  <g>
+    <text class="cls-5" transform="translate(170 190)"><tspan class="cls-9" x="0" y="0">R</tspan><tspan class="cls-8" x="106.98" y="0">ATA</tspan><tspan class="cls-9" x="381.18" y="0">VIC</tspan></text>
+    <path class="cls-2" d="M378,208c92,12,212,12,332,0"/>
+  </g>
+</svg>
