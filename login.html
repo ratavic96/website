@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login – Ghana Travel & Tours</title>
+<style>
+  :root{--emerald:#059669;--line:#e8eaec;--muted:#5b5e62}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  .container{max-width:700px;margin:0 auto;padding:20px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+  .nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .card{border:1px solid var(--line);border-radius:18px;padding:16px}
+  .grid{display:grid;gap:12px}
+  input{width:100%;padding:10px;border:1px solid var(--line);border-radius:12px}
+  .btn{padding:10px 14px;border-radius:12px;border:1px solid var(--emerald);color:#fff;background:var(--emerald);text-decoration:none}
+  .muted{color:var(--muted)}
+  .link{padding:8px 12px;border-radius:999px;text-decoration:none}
+  .link:hover{background:#f3f4f6}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="link">← Home</a>
+    <strong>Login</strong>
+    <a href="signup.html" class="link">Sign Up</a>
+  </div>
+</header>
+
+<main class="container" style="padding:24px 20px">
+  <form id="loginForm" class="card grid">
+    <input name="email" placeholder="Email" required>
+    <input name="password" type="password" placeholder="Password" required>
+    <button class="btn" type="submit">Sign In</button>
+    <div class="muted">Admin demo: <b>admin@ghana.tours / admin</b></div>
+  </form>
+  <div id="err" class="card" style="margin-top:14px;display:none;background:#fff5f5;border-color:#fecaca">
+    <b style="color:#b91c1c">Login failed</b>
+    <p class="muted" style="margin:6px 0 0">Please check your email and password.</p>
+  </div>
+</main>
+
+<script>
+  const LS_USERS='ghana_users_v1', LS_CURR='ghana_current_user_v1';
+  function users(){try{return JSON.parse(localStorage.getItem(LS_USERS))||[]}catch{return []}}
+  function setCurr(u){localStorage.setItem(LS_CURR,JSON.stringify(u))}
+  document.getElementById('loginForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const data=Object.fromEntries(new FormData(e.target).entries());
+    const u=users().find(x=>x.email.toLowerCase()===data.email.toLowerCase() && x.password===data.password);
+    if(!u){document.getElementById('err').style.display='block';return}
+    setCurr(u);
+    location.href='account.html';
+  });
+</script>
+</body>
+</html>

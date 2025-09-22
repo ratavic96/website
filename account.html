@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Account – Ghana Travel & Tours</title>
+<style>
+  :root{--emerald:#059669;--line:#e8eaec;--muted:#5b5e62}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  .container{max-width:900px;margin:0 auto;padding:20px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+  .nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .card{border:1px solid var(--line);border-radius:18px;padding:16px}
+  .muted{color:var(--muted)}
+  .btn{padding:10px 14px;border-radius:12px;border:1px solid var(--emerald);background:var(--emerald);color:#fff;text-decoration:none}
+  .link{padding:8px 12px;border-radius:999px;text-decoration:none}
+  .link:hover{background:#f3f4f6}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="link">← Home</a>
+    <strong>My Account</strong>
+    <a href="custom-trip.html" class="link">Custom Trip</a>
+  </div>
+</header>
+
+<main class="container" style="padding:24px 20px">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>
+        <div><strong id="name"></strong></div>
+        <div class="muted" id="email"></div>
+        <div class="muted" id="role"></div>
+      </div>
+      <div>
+        <button id="logout" class="btn" type="button" style="background:#111827;border-color:#111827">Logout</button>
+      </div>
+    </div>
+    <div id="note" class="muted" style="margin-top:10px"></div>
+  </div>
+</main>
+
+<script>
+  const LS_CURR='ghana_current_user_v1';
+  function curr(){try{return JSON.parse(localStorage.getItem(LS_CURR))}catch{return null}}
+  const u=curr();
+  if(!u){location.href='login.html'}
+  else{
+    document.getElementById('name').textContent=u.name||'(no name)';
+    document.getElementById('email').textContent=u.email;
+    document.getElementById('role').textContent='Role: '+u.role;
+    document.getElementById('note').textContent = u.role==='driver'
+      ? (u.approved?'Your driver profile is approved and visible.':'Pending admin approval — profile hidden until approved.')
+      : '';
+  }
+  document.getElementById('logout').addEventListener('click',()=>{localStorage.removeItem(LS_CURR);location.href='index.html'})
+</script>
+</body>
+</html>

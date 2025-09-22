@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign Up – Ghana Travel & Tours</title>
+<style>
+  :root{--emerald:#059669;--line:#e8eaec;--muted:#5b5e62}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  .container{max-width:900px;margin:0 auto;padding:20px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+  .nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .btn{padding:10px 14px;border-radius:12px;border:1px solid var(--emerald);color:#fff;background:var(--emerald);text-decoration:none}
+  .link{padding:8px 12px;border-radius:999px;text-decoration:none}
+  .link:hover{background:#f3f4f6}
+  .card{border:1px solid var(--line);border-radius:18px;padding:16px}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+  input,select{width:100%;padding:10px;border:1px solid var(--line);border-radius:12px}
+  .muted{color:var(--muted)}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="link">← Back</a>
+      <strong>Sign Up</strong>
+      <a href="login.html" class="link">Login</a>
+    </div>
+  </header>
+
+  <main class="container" style="padding:24px 20px">
+    <form id="signupForm" class="card grid">
+      <select name="role" required>
+        <option value="traveler">Traveler</option>
+        <option value="driver">Driver</option>
+      </select>
+      <input name="name" placeholder="Full name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="password" type="password" placeholder="Password" required>
+      <input name="city" placeholder="Base city (optional)">
+      <input name="vehicle" placeholder="Vehicle (drivers)">
+      <button class="btn" type="submit" style="grid-column:1/-1">Create Account</button>
+      <div class="muted" style="grid-column:1/-1">Drivers require admin approval before they appear publicly.</div>
+    </form>
+    <div id="ok" class="card" style="margin-top:14px;display:none">
+      <b>Account created!</b>
+      <p class="muted" id="msg"></p>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <a class="link" href="account.html">Go to My Account</a>
+        <a class="link" href="index.html">Home</a>
+      </div>
+    </div>
+  </main>
+
+<script>
+  const LS_USERS='ghana_users_v1', LS_CURR='ghana_current_user_v1';
+  const ADMIN={id:'admin',role:'admin',name:'Site Admin',email:'admin@ghana.tours',password:'admin',approved:true};
+  function load(){let l=[];try{l=JSON.parse(localStorage.getItem(LS_USERS))||[]}catch{} if(!l.find(u=>u.email===ADMIN.email)){l.push(ADMIN);localStorage.setItem(LS_USERS,JSON.stringify(l))} return l}
+  function save(l){localStorage.setItem(LS_USERS,JSON.stringify(l))}
+  function setCurr(u){localStorage.setItem(LS_CURR,JSON.stringify(u))}
+  document.getElementById('signupForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const users=load();
+    const data=Object.fromEntries(new FormData(e.target).entries());
+    if(users.find(u=>u.email.toLowerCase()===data.email.toLowerCase())){alert('Email already exists. Please log in.');return}
+    const user={id:Math.random().toString(36).slice(2,10),role:data.role||'traveler',name:data.name||'New User',email:data.email,password:data.password,city:data.city||'',vehicle:data.vehicle||'',approved:data.role==='driver'?false:true,rating:data.role==='driver'?0:undefined,tripsCompleted:data.role==='driver'?0:undefined};
+    users.push(user); save(users); setCurr(user);
+    e.target.reset();
+    document.getElementById('msg').textContent = user.role==='driver' ? 'Your driver application is pending admin approval.' : 'Your traveler account is ready.';
+    document.getElementById('ok').style.display='block';
+  });
+</script>
+</body>
+</html>

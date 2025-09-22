@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Airport Pickup Registration – Ghana Travel & Tours</title>
+<meta name="description" content="Register your airport pickup in Ghana: traveler details, flight info, arrival time, destination and special notes." />
+<style>
+  :root{
+    --ink:#0b0b0c; --muted:#5b5e62; --line:#e8eaec; --card:#ffffff;
+    --emerald:#059669; --emerald-700:#047857; --bg:#f6fbf8; --rose:#ef4444;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;color:var(--ink);background:#f8fafc}
+  a{text-decoration:none;color:inherit}
+  .container{max-width:900px;margin:0 auto;padding:20px}
+  header{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px}
+  .link{padding:8px 12px;border-radius:10px}
+  .link:hover{background:#f3f4f6}
+  .brand{display:flex;align-items:center;gap:8px;font-weight:900}
+  .brand svg{width:22px;height:22px}
+  .hero{background:linear-gradient(#ecfdf5,#fff);border-bottom:1px solid #dcfce7}
+  .hero-inner{padding:20px 0}
+  h1{font-size:28px;margin:0 0 6px}
+  .muted{color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,.04)}
+  .section{padding:18px}
+  .title{font-weight:900;margin:0 0 10px}
+  .grid{display:grid;gap:12px}
+  .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media (max-width:760px){.grid-2,.grid-3{grid-template-columns:1fr}}
+  label{font-size:13px;font-weight:700;display:block;margin:0 0 6px}
+  .req{color:var(--rose)}
+  input,select,textarea{
+    width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:15px
+  }
+  textarea{min-height:110px;resize:vertical}
+  .btn{display:inline-block;padding:10px 14px;border-radius:12px;font-weight:700;border:1px solid transparent}
+  .btn-primary{background:var(--emerald);color:#fff}
+  .btn-primary:hover{background:var(--emerald-700)}
+  .btn-ghost{border-color:var(--emerald);color:var(--emerald);background:#fff}
+  .btn-ghost:hover{background:#ecfdf5}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .notice{font-size:13px;color:var(--muted)}
+  .divider{height:1px;background:var(--line);margin:8px 0 14px}
+  .success{background:#ecfdf5;border:1px solid #bbf7d0;color:#065f46}
+  .error{background:#fff1f2;border:1px solid #fecdd3;color:#9f1239}
+  .inline-help{font-size:12px;color:#6b7280;margin-top:4px}
+  .embed-wrap{border:1px dashed #d1fae5;border-radius:14px;padding:12px;background:#f7fdfb}
+  .small{font-size:12px}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+<a class="brand" href="index.html">
+  <img class="logo" src="images/rataviclogo.svg" alt="RATAVIC Logo">
+</a>
+
+<style>
+.logo {
+  height: 48px;   /* adjust as needed */
+  width: auto;
+  display: block;
+}
+</style>
+      <nav class="row">
+        <a class="link" href="index.html">Home</a>
+
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Airport Pickup Registration</h1>
+      <p class="muted">Share your arrival details and destination. We’ll confirm and assign a verified driver for seamless pickup at Kotoka International Airport (ACC).</p>
+    </div>
+  </section>
+
+  <main class="container" style="padding:20px 0 30px">
+    <!-- Status banners -->
+    <div id="statusOK" class="card success" style="display:none;margin-bottom:14px">
+      <strong>Submitted!</strong>
+      <div class="small">We saved your request and sent a copy to our email. We’ll be in touch shortly.</div>
+    </div>
+    <div id="statusErr" class="card error" style="display:none;margin-bottom:14px">
+      <strong>There’s a problem</strong>
+      <div class="small" id="errMsg">Please check required fields.</div>
+    </div>
+
+    <!-- Form -->
+    <form id="pickupForm" class="card">
+      <div class="section">
+        <h2 class="title">Traveler Information</h2>
+        <div class="grid grid-2">
+          <div>
+            <label>Full Name <span class="req">*</span></label>
+            <input name="full_name" required placeholder="e.g., Ama Mensah">
+          </div>
+          <div>
+            <label>Email <span class="req">*</span></label>
+            <input type="email" name="email" required placeholder="you@example.com">
+          </div>
+          <div>
+            <label>WhatsApp / Phone <span class="req">*</span></label>
+            <input name="phone" required placeholder="+233 20 000 0000">
+          </div>
+          <div>
+            <label>Number of Travelers <span class="req">*</span></label>
+            <input type="number" min="1" name="pax" required placeholder="e.g., 2">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <h2 class="title">Arrival Details</h2>
+        <div class="grid grid-3">
+          <div>
+            <label>Airline <span class="req">*</span></label>
+            <input name="airline" required placeholder="e.g., Delta, KLM">
+          </div>
+          <div>
+            <label>Flight Number <span class="req">*</span></label>
+            <input name="flight_no" required placeholder="e.g., DL220">
+          </div>
+          <div>
+            <label>Arrival Date <span class="req">*</span></label>
+            <input type="date" name="arrival_date" required>
+          </div>
+          <div>
+            <label>Arrival Time (Local) <span class="req">*</span></label>
+            <input type="time" name="arrival_time" required>
+            <div class="inline-help">Ghana Time (GMT, no DST)</div>
+          </div>
+          <div>
+            <label>Origin Airport</label>
+            <input name="origin" placeholder="e.g., JFK, AMS">
+          </div>
+          <div>
+            <label>Luggage (approx.)</label>
+            <input type="number" min="0" name="bags" placeholder="e.g., 3">
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <h2 class="title">Destination & Signage</h2>
+        <div class="grid grid-2">
+          <div>
+            <label>Drop-off Hotel / Address <span class="req">*</span></label>
+            <input name="destination" required placeholder="Hotel name or full address in Accra">
+          </div>
+          <div>
+            <label>Pickup Sign Name</label>
+            <input name="sign_name" placeholder="Name to display on sign (optional)">
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <label>Notes / Requests</label>
+          <textarea name="notes" placeholder="Child seat, extra luggage, accessibility, languages, etc."></textarea>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <h2 class="title">Confirmation</h2>
+        <div class="grid grid-2">
+          <div>
+            <label>Preferred Payment Method</label>
+            <select name="payment">
+              <option value="">Select…</option>
+              <option>Mobile Money (MoMo)</option>
+              <option>Card</option>
+              <option>Cash</option>
+            </select>
+          </div>
+          <div>
+            <label>Vehicle Preference</label>
+            <select name="vehicle">
+              <option value="">Any suitable</option>
+              <option>Sedan</option>
+              <option>SUV</option>
+              <option>Van / Minibus</option>
+            </select>
+          </div>
+        </div>
+        <div class="row" style="justify-content:space-between;align-items:center;margin-top:16px">
+          <div class="notice">We’ll confirm your pickup and driver via email/WhatsApp.</div>
+          <div class="row">
+            <button type="button" id="previewBtn" class="btn btn-ghost">Preview</button>
+            <button type="submit" class="btn btn-primary">Submit Registration</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- Preview Modal (simple) -->
+    <div id="preview" class="card" style="display:none;margin-top:14px">
+      <strong>Preview</strong>
+      <div id="previewBody" class="small" style="margin-top:8px;white-space:pre-wrap"></div>
+      <div class="row" style="margin-top:10px">
+        <button id="closePreview" class="btn btn-ghost" type="button">Close</button>
+      </div>
+    </div>
+
+    <!-- Optional Google Form embed -->
+    <section class="card embed" id="embedSection" style="display:none;margin-top:16px">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <strong>Alternate: Submit via Google Forms</strong>
+        <a id="openGForm" class="btn btn-ghost" target="_blank" rel="noopener">Open Form</a>
+      </div>
+      <div class="embed-wrap" style="margin-top:10px">
+        <iframe id="gformFrame" title="Google Form" style="width:100%;height:720px;border:0;border-radius:10px" loading="lazy"></iframe>
+        <div class="inline-help" style="margin-top:6px">If the form is blocked by your browser, use the “Open Form” button above.</div>
+      </div>
+    </section>
+
+    <p class="inline-help" style="margin-top:16px">
+      Need help? Email <a href="mailto:ratavic96@gmail.com">ratavic96@gmail.com</a> or WhatsApp +233 54 8933146
+    </p>
+  </main>
+
+<!-- EmailJS SDK (no backend required) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+/* ============================
+   CONFIG: EmailJS + Google Form
+   ============================ */
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY_HERE";     // e.g. "2dXyZ..."; EmailJS Account -> Account -> Public Key
+const EMAILJS_SERVICE_ID = "service_q4yy6e8";     // e.g. "service_gmail123"
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID_HERE";   // e.g. "template_airport_pickup"
+const EMAIL_TO_ADDRESS   = "ratavic96@gmail.com";      // where you want to receive the email
+
+// Optional Google Form (leave blank to hide)
+const GOOGLE_FORM_LINK_URL  = ""; // e.g., "https://docs.google.com/forms/d/e/XXXXXXXX/viewform"
+const GOOGLE_FORM_EMBED_URL = ""; // e.g., "https://docs.google.com/forms/d/e/XXXXXXXX/viewform?embedded=true"
+
+/* ============================
+   Init EmailJS
+============================ */
+if (EMAILJS_PUBLIC_KEY && emailjs && emailjs.init) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
+
+/* ============================
+   Google Form embed/link UI
+============================ */
+(function initEmbed(){
+  const sec = document.getElementById('embedSection');
+  const frame = document.getElementById('gformFrame');
+  const openBtn = document.getElementById('openGForm');
+  if (GOOGLE_FORM_EMBED_URL || GOOGLE_FORM_LINK_URL){
+    sec.style.display = 'block';
+    if (GOOGLE_FORM_EMBED_URL){ frame.src = GOOGLE_FORM_EMBED_URL; }
+    if (GOOGLE_FORM_LINK_URL){
+      openBtn.href = GOOGLE_FORM_LINK_URL;
+      openBtn.style.display = 'inline-block';
+    } else {
+      openBtn.style.display = 'none';
+    }
+  }
+})();
+
+/* ============================
+   Form + Validation + Email
+============================ */
+const form = document.getElementById('pickupForm');
+const statusOK = document.getElementById('statusOK');
+const statusErr = document.getElementById('statusErr');
+const errMsg = document.getElementById('errMsg');
+
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  statusOK.style.display = 'none';
+  statusErr.style.display = 'none';
+
+  const fd = new FormData(form);
+  const required = ["full_name","email","phone","pax","airline","flight_no","arrival_date","arrival_time","destination"];
+  for (const k of required){
+    if(!fd.get(k) || String(fd.get(k)).trim()===""){
+      errMsg.textContent = "Please fill all required fields.";
+      statusErr.style.display = 'block';
+      return;
+    }
+  }
+
+  // Build params for email template
+  const data = Object.fromEntries(fd.entries());
+  const emailParams = {
+    to_email: EMAIL_TO_ADDRESS,
+    full_name: data.full_name,
+    email: data.email,
+    phone: data.phone,
+    pax: data.pax,
+    airline: data.airline,
+    flight_no: data.flight_no,
+    arrival_date: data.arrival_date,
+    arrival_time: data.arrival_time,
+    origin: data.origin || "",
+    bags: data.bags || "",
+    destination: data.destination,
+    sign_name: data.sign_name || "",
+    payment: data.payment || "",
+    vehicle: data.vehicle || "",
+    notes: data.notes || "",
+    submitted_at: new Date().toLocaleString()
+  };
+
+  // Try to send via EmailJS
+  try {
+    if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID) {
+      throw new Error("EmailJS keys/IDs are not configured. Please add your EmailJS Public Key, Service ID, and Template ID.");
+    }
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams);
+  } catch (err) {
+    console.error("EmailJS error:", err);
+    errMsg.textContent = err?.message || "Unable to send email. Please try again later.";
+    statusErr.style.display = 'block';
+    return;
+  }
+
+  // Optionally open your Google Form in a new tab for redundancy
+  if (GOOGLE_FORM_LINK_URL){
+    window.open(GOOGLE_FORM_LINK_URL, "_blank", "noopener");
+  }
+
+  // Success
+  form.reset();
+  statusOK.style.display = 'block';
+  statusOK.scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+/* ============================
+   Preview
+============================ */
+const previewBtn = document.getElementById('previewBtn');
+const preview = document.getElementById('preview');
+const previewBody = document.getElementById('previewBody');
+const closePreview = document.getElementById('closePreview');
+
+previewBtn.addEventListener('click', ()=>{
+  const fd = new FormData(form);
+  const obj = Object.fromEntries(fd.entries());
+  const lines = [
+    `Name: ${obj.full_name || ""}`,
+    `Email: ${obj.email || ""}`,
+    `Phone: ${obj.phone || ""}`,
+    `Travelers: ${obj.pax || ""}`,
+    `Airline: ${obj.airline || ""}`,
+    `Flight #: ${obj.flight_no || ""}`,
+    `Arrival: ${obj.arrival_date || ""} ${obj.arrival_time || ""}`,
+    `Origin: ${obj.origin || ""}`,
+    `Bags: ${obj.bags || ""}`,
+    `Destination: ${obj.destination || ""}`,
+    `Sign Name: ${obj.sign_name || ""}`,
+    `Payment: ${obj.payment || ""}`,
+    `Vehicle: ${obj.vehicle || ""}`,
+    `Notes: ${obj.notes || ""}`
+  ];
+  previewBody.textContent = lines.join('\n');
+  preview.style.display = 'block';
+  preview.scrollIntoView({behavior:'smooth', block:'start'});
+});
+closePreview.addEventListener('click', ()=> preview.style.display='none');
+</script>
+</body>
+</html>

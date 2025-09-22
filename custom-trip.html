@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan a Custom Trip – Ghana Travel & Tours</title>
+<style>
+  :root{--emerald:#059669;--line:#e8eaec;--muted:#5b5e62}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+  .container{max-width:900px;margin:0 auto;padding:20px}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+  .nav{display:flex;justify-content:space-between;align-items:center;height:64px}
+  .card{border:1px solid var(--line);border-radius:18px;padding:16px}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+  input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:12px}
+  .btn{padding:10px 14px;border-radius:12px;border:1px solid var(--emerald);background:var(--emerald);color:#fff}
+  .muted{color:var(--muted)}
+  .link{padding:8px 12px;border-radius:999px;text-decoration:none}
+  .link:hover{background:#f3f4f6}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="link">← Home</a>
+    <strong>Plan a Custom Trip</strong>
+    <a href="signup.html" class="link">Create Account</a>
+  </div>
+</header>
+
+<main class="container" style="padding:24px 20px">
+  <form id="customForm" class="card grid">
+    <input name="name" placeholder="Full name" required>
+    <input name="email" type="email" placeholder="Email" required>
+    <input name="phone" placeholder="WhatsApp / Phone (optional)">
+    <input name="dates" placeholder="Dates (e.g., 12–16 Dec)">
+    <select name="interest">
+      <option value="Cape Coast & Kakum">Cape Coast & Kakum</option>
+      <option value="Mole Safari">Mole Safari</option>
+      <option value="Volta Waterfalls">Volta Waterfalls</option>
+      <option value="Accra City Tour">Accra City Tour</option>
+      <option value="Mixed / Custom">Mixed / Custom</option>
+    </select>
+    <input name="pax" type="number" min="1" placeholder="# of travelers">
+    <textarea name="message" rows="4" style="grid-column:1/-1" placeholder="Tell us what you’d love to see…"></textarea>
+    <button class="btn" type="submit" style="grid-column:1/-1">Request Quote</button>
+  </form>
+  <div id="thanks" class="card" style="margin-top:14px;display:none">
+    <b>Thanks!</b>
+    <p class="muted">We’ve saved your request and will contact you shortly.</p>
+    <div style="display:flex;gap:10px;margin-top:8px">
+      <a class="link" href="index.html">Back to Home</a>
+      <a class="link" href="account.html">My Account</a>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.getElementById('customForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const data=Object.fromEntries(new FormData(e.target).entries());
+    localStorage.setItem('ghana_custom_'+Date.now(), JSON.stringify(data));
+    e.target.reset();
+    document.getElementById('thanks').style.display='block';
+  });
+</script>
+</body>
+</html>
